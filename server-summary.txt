@@ -1,0 +1,44 @@
+# Percona Toolkit System Summary Report ######################
+        Date | 2020-04-01 10:27:57 UTC (local TZ: EDT -0400)
+    Hostname | beast-node3-ubuntu
+      Uptime | 14 days, 12:15, 13 users,  load average: 0.00, 0.00, 0.00
+      System | Supermicro; SYS-F619P2-RTN; v0123456789 (Other)
+ Service Tag | S292592X0110239C
+    Platform | Linux
+     Release | Ubuntu 18.04.4 LTS (bionic)
+      Kernel | 5.3.0-42-generic
+Architecture | CPU = 64-bit, OS = 64-bit
+   Threading | NPTL 2.27
+     SELinux | No SELinux detected
+ Virtualized | No virtualization detected
+# Processor ##################################################
+  Processors | physical = 2, cores = 40, virtual = 80, hyperthreading = yes
+      Speeds | 1x1026.184, 1x799.631, 1x799.849, 1x799.914, 1x800.004, 3x800.024, 4x800.038, 1x800.042, 2x800.046, 1x800.082, 1x800.094, 1x800.106, 2x800.123, 1x800.153, 1x800.178, 1x800.181, 1x800.183, 2x800.185, 1x800.196, 1x800.205, 1x800.208, 1x800.221, 1x800.231, 1x800.262, 1x800.264, 1x800.295, 1x800.300, 1x800.327, 2x800.334, 1x800.339, 1x800.352, 1x800.366, 1x800.370, 1x800.378, 1x800.391, 2x800.408, 1x800.417, 1x800.481, 1x800.484, 1x800.485, 1x800.494, 1x800.501, 1x800.521, 1x800.523, 1x800.524, 1x800.546, 1x800.553, 1x800.574, 1x800.600, 1x800.607, 1x800.627, 1x800.647, 1x800.649, 1x800.688, 1x800.703, 1x800.712, 1x800.725, 1x800.727, 1x800.730, 1x800.763, 1x800.782, 1x800.837, 1x800.907, 1x800.912, 1x801.132, 1x804.174, 1x817.831, 1x855.771, 1x878.884, 1x990.630
+      Models | 80xIntel(R) Xeon(R) Gold 6230 CPU @ 2.10GHz
+      Caches | 80x28160 KB
+# Memory #####################################################
+       Total | 187.6G
+        Free | 180.7G
+        Used | physical = 1.5G, swap allocated = 32.0G, swap used = 137.0M, virtual = 1.6G
+      Shared | 436.0k
+     Buffers | 5.4G
+      Caches | 184.8G
+       Dirty | 1292 kB
+     UsedRSS | 562.2M
+  Swappiness | 60
+ DirtyPolicy | 20, 10
+ DirtyStatus | 0, 0
+  Locator   Size     Speed             Form Factor   Type          Type Detail
+  ========= ======== ================= ============= ============= ===========
+  P1-DIMMA1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P1-DIMMB1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P1-DIMMC1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P1-DIMMD1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P1-DIMME1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P1-DIMMF1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P2-DIMMA1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P2-DIMMB1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P2-DIMMC1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P2-DIMMD1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P2-DIMME1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
+  P2-DIMMF1 16384 MB 2933 MT/s         DIMM          DDR4          Synchronous
