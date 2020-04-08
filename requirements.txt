@@ -4,6 +4,5 @@ seaborn==0.8.1
 pandas
 pandas_datareader
 requests
-rllib
 altair
 vega_datasets
