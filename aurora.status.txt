@@ -1,233 +1,377 @@
-mysql  Ver 14.14 Distrib 5.7.29, for Linux (x86_64) using  EditLine wrapper
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Usage: mysql [OPTIONS] [database]
-  -?, --help          Display this help and exit.
-  -I, --help          Synonym for -?
-  --auto-rehash       Enable automatic rehashing. One doesn't need to use
-                      'rehash' to get table and field completion, but startup
-                      and reconnecting may take a longer time. Disable with
-                      --disable-auto-rehash.
-                      (Defaults to on; use --skip-auto-rehash to disable.)
-  -A, --no-auto-rehash 
-                      No automatic rehashing. One has to use 'rehash' to get
-                      table and field completion. This gives a quicker start of
-                      mysql and disables rehashing on reconnect.
-  --auto-vertical-output 
-                      Automatically switch to vertical output mode if the
-                      result is wider than the terminal width.
-  -B, --batch         Don't use history file. Disable interactive behavior.
-                      (Enables --silent.)
-  --bind-address=name IP address to bind to.
-  --binary-as-hex     Print binary data as hex
-  --character-sets-dir=name 
-                      Directory for character set files.
-  --column-type-info  Display column type information.
-  -c, --comments      Preserve comments. Send comments to the server. The
-                      default is --skip-comments (discard comments), enable
-                      with --comments.
-  -C, --compress      Use compression in server/client protocol.
-  -#, --debug[=#]     This is a non-debug version. Catch this and exit.
-  --debug-check       This is a non-debug version. Catch this and exit.
-  -T, --debug-info    This is a non-debug version. Catch this and exit.
-  -D, --database=name Database to use.
-  --default-character-set=name 
-                      Set the default character set.
-  --delimiter=name    Delimiter to be used.
-  --enable-cleartext-plugin 
-                      Enable/disable the clear text authentication plugin.
-  -e, --execute=name  Execute command and quit. (Disables --force and history
-                      file.)
-  -E, --vertical      Print the output of a query (rows) vertically.
-  -f, --force         Continue even if we get an SQL error.
-  --histignore=name   A colon-separated list of patterns to keep statements
-                      from getting logged into syslog and mysql history.
-  -G, --named-commands 
-                      Enable named commands. Named commands mean this program's
-                      internal commands; see mysql> help . When enabled, the
-                      named commands can be used from any line of the query,
-                      otherwise only from the first line, before an enter.
-                      Disable with --disable-named-commands. This option is
-                      disabled by default.
-  -i, --ignore-spaces Ignore space after function names.
-  --init-command=name SQL Command to execute when connecting to MySQL server.
-                      Will automatically be re-executed when reconnecting.
-  --local-infile      Enable/disable LOAD DATA LOCAL INFILE.
-  -b, --no-beep       Turn off beep on error.
-  -h, --host=name     Connect to host.
-  -H, --html          Produce HTML output.
-  -X, --xml           Produce XML output.
-  --line-numbers      Write line numbers for errors.
-                      (Defaults to on; use --skip-line-numbers to disable.)
-  -L, --skip-line-numbers 
-                      Don't write line number for errors.
-  -n, --unbuffered    Flush buffer after each query.
-  --column-names      Write column names in results.
-                      (Defaults to on; use --skip-column-names to disable.)
-  -N, --skip-column-names 
-                      Don't write column names in results.
-  --sigint-ignore     Ignore SIGINT (CTRL-C).
-  -o, --one-database  Ignore statements except those that occur while the
-                      default database is the one named at the command line.
-  --pager[=name]      Pager to use to display results. If you don't supply an
-                      option, the default pager is taken from your ENV variable
-                      PAGER. Valid pagers are less, more, cat [> filename],
-                      etc. See interactive help (\h) also. This option does not
-                      work in batch mode. Disable with --disable-pager. This
-                      option is disabled by default.
-  -p, --password[=name] 
-                      Password to use when connecting to server. If password is
-                      not given it's asked from the tty.
-  -P, --port=#        Port number to use for connection or 0 for default to, in
-                      order of preference, my.cnf, $MYSQL_TCP_PORT,
-                      /etc/services, built-in default (3306).
-  --prompt=name       Set the mysql prompt to this value.
-  --protocol=name     The protocol to use for connection (tcp, socket, pipe,
-                      memory).
-  -q, --quick         Don't cache result, print it row by row. This may slow
-                      down the server if the output is suspended. Doesn't use
-                      history file.
-  -r, --raw           Write fields without conversion. Used with --batch.
-  --reconnect         Reconnect if the connection is lost. Disable with
-                      --disable-reconnect. This option is enabled by default.
-                      (Defaults to on; use --skip-reconnect to disable.)
-  -s, --silent        Be more silent. Print results with a tab as separator,
-                      each row on new line.
-  -S, --socket=name   The socket file to use for connection.
-  --ssl-mode=name     SSL connection mode.
-  --ssl               Deprecated. Use --ssl-mode instead.
-                      (Defaults to on; use --skip-ssl to disable.)
-  --ssl-verify-server-cert 
-                      Deprecated. Use --ssl-mode=VERIFY_IDENTITY instead.
-  --ssl-ca=name       CA file in PEM format.
-  --ssl-capath=name   CA directory.
-  --ssl-cert=name     X509 cert in PEM format.
-  --ssl-cipher=name   SSL cipher to use.
-  --ssl-key=name      X509 key in PEM format.
-  --ssl-crl=name      Certificate revocation list.
-  --ssl-crlpath=name  Certificate revocation list path.
-  --tls-version=name  TLS version to use, permitted values are: TLSv1, TLSv1.1,
-                      TLSv1.2
-  --server-public-key-path=name 
-                      File path to the server public RSA key in PEM format.
-  --get-server-public-key 
-                      Get server public key
-  -t, --table         Output in table format.
-  --tee=name          Append everything into outfile. See interactive help (\h)
-                      also. Does not work in batch mode. Disable with
-                      --disable-tee. This option is disabled by default.
-  -u, --user=name     User for login if not current user.
-  -U, --safe-updates  Only allow UPDATE and DELETE that uses keys.
-  -U, --i-am-a-dummy  Synonym for option --safe-updates, -U.
-  -v, --verbose       Write more. (-v -v -v gives the table output format).
-  -V, --version       Output version information and exit.
-  -w, --wait          Wait and retry if connection is down.
-  --connect-timeout=# Number of seconds before connection timeout.
-  --max-allowed-packet=# 
-                      The maximum packet length to send to or receive from
-                      server.
-  --net-buffer-length=# 
-                      The buffer size for TCP/IP and socket communication.
-  --select-limit=#    Automatic limit for SELECT when using --safe-updates.
-  --max-join-size=#   Automatic limit for rows in a join when using
-                      --safe-updates.
-  --secure-auth       Refuse client connecting to server if it uses old
-                      (pre-4.1.1) protocol. Deprecated. Always TRUE
-  --server-arg=name   Send embedded server this as a parameter.
-  --show-warnings     Show warnings after every statement.
-  -j, --syslog        Log filtered interactive commands to syslog. Filtering of
-                      commands depends on the patterns supplied via histignore
-                      option besides the default patterns.
-  --plugin-dir=name   Directory for client-side plugins.
-  --default-auth=name Default authentication client-side plugin to use.
-  --binary-mode       By default, ASCII '\0' is disallowed and '\r\n' is
-                      translated to '\n'. This switch turns off both features,
-                      and also turns off parsing of all clientcommands except
-                      \C and DELIMITER, in non-interactive mode (for input
-                      piped to mysql or loaded using the 'source' command).
-                      This is necessary when processing output from mysqlbinlog
-                      that may contain blobs.
-  --connect-expired-password 
-                      Notify the server that this client is prepared to handle
-                      expired password sandbox mode.
-
-Default options are read from the following files in the given order:
-/etc/my.cnf /etc/mysql/my.cnf ~/.my.cnf 
-The following groups are read: mysql client
-The following options may be given as the first argument:
---print-defaults        Print the program argument list and exit.
---no-defaults           Don't read default options from any option file,
-                        except for login file.
---defaults-file=#       Only read default options from the given file #.
---defaults-extra-file=# Read this file after the global files are read.
---defaults-group-suffix=#
-                        Also read groups with concat(group, suffix)
---login-path=#          Read this path from the login file.
-
-Variables (--variable-name=value)
-and boolean options {FALSE|TRUE}  Value (after reading options)
---------------------------------- ----------------------------------------
-auto-rehash                       TRUE
-auto-vertical-output              FALSE
-bind-address                      (No default value)
-binary-as-hex                     FALSE
-character-sets-dir                (No default value)
-column-type-info                  FALSE
-comments                          FALSE
-compress                          FALSE
-database                          (No default value)
-default-character-set             auto
-delimiter                         ;
-enable-cleartext-plugin           FALSE
-vertical                          FALSE
-force                             FALSE
-histignore                        (No default value)
-named-commands                    FALSE
-ignore-spaces                     FALSE
-init-command                      (No default value)
-local-infile                      FALSE
-no-beep                           FALSE
-host                              dbrest-cluster.cluster-chnjcb9bgxs7.us-east-2.rds.amazonaws.com
-html                              FALSE
-xml                               FALSE
-line-numbers                      TRUE
-unbuffered                        FALSE
-column-names                      TRUE
-sigint-ignore                     FALSE
-port                              0
-prompt                            mysql> 
-quick                             FALSE
-raw                               FALSE
-reconnect                         FALSE
-socket                            e
-ssl                               TRUE
-ssl-verify-server-cert            FALSE
-ssl-ca                            (No default value)
-ssl-capath                        (No default value)
-ssl-cert                          (No default value)
-ssl-cipher                        (No default value)
-ssl-key                           (No default value)
-ssl-crl                           (No default value)
-ssl-crlpath                       (No default value)
-tls-version                       (No default value)
-server-public-key-path            (No default value)
-get-server-public-key             FALSE
-table                             FALSE
-user                              admin
-safe-updates                      FALSE
-i-am-a-dummy                      FALSE
-connect-timeout                   0
-max-allowed-packet                16777216
-net-buffer-length                 16384
-select-limit                      1000
-max-join-size                     1000000
-secure-auth                       TRUE
-show-warnings                     FALSE
-plugin-dir                        (No default value)
-default-auth                      (No default value)
-binary-mode                       FALSE
-connect-expired-password          FALSE
+Aborted_clients 0
+Aborted_connects        0
+AuroraDb_commits        474
+AuroraDb_commit_latency 3317309
+AuroraDb_ddl_stmt_duration      33232
+AuroraDb_select_stmt_duration   1581046
+AuroraDb_insert_stmt_duration   83994
+AuroraDb_update_stmt_duration   361
+AuroraDb_delete_stmt_duration   0
+AuroraDb_lockmgr_bitmaps0_in_use        6
+AuroraDb_lockmgr_bitmaps1_in_use        0
+AuroraDb_lockmgr_bitmaps_mem_used       288
+AuroraDb_thread_deadlocks       0
+Aurora_available_alter_table_log_entries        0
+Aurora_dict_sys_mem_size        189672
+Aurora_fast_insert_cache_hits   0
+Aurora_fast_insert_cache_misses 0
+Aurora_lockmgr_memory_used      689120448
+Aurora_missing_history_on_replica_incidents     0
+Aurora_repl_bytes_received      0
+Aurora_reserved_mem_exceeded_incidents  0
+Aurora_total_op_memory  0
+Aurora_total_op_memory_limit    1662847590
+Aurora_total_op_temp_space      0
+Aurora_total_op_temp_space_limit        58419753369
+Aurora_used_alter_table_log_entries     0
+Binlog_cache_disk_use   0
+Binlog_cache_use        0
+Binlog_stmt_cache_disk_use      0
+Binlog_stmt_cache_use   0
+Bytes_received  371237
+Bytes_sent      3087347
+Com_admin_commands      2320
+Com_assign_to_keycache  0
+Com_alter_db    0
+Com_alter_db_upgrade    0
+Com_alter_event 0
+Com_alter_function      0
+Com_alter_procedure     0
+Com_alter_server        0
+Com_alter_table 0
+Com_alter_tablespace    0
+Com_alter_user  0
+Com_analyze     0
+Com_begin       0
+Com_binlog      0
+Com_call_procedure      1
+Com_change_db   0
+Com_change_master       0
+Com_check       0
+Com_checksum    0
+Com_commit      474
+Com_create_db   0
+Com_create_event        0
+Com_create_function     0
+Com_create_index        0
+Com_create_procedure    0
+Com_create_server       0
+Com_create_table        0
+Com_create_trigger      1
+Com_create_udf  0
+Com_create_user 1
+Com_create_view 0
+Com_dealloc_sql 0
+Com_delete      0
+Com_delete_multi        0
+Com_do  0
+Com_drop_db     0
+Com_drop_event  0
+Com_drop_function       0
+Com_drop_index  0
+Com_drop_procedure      0
+Com_drop_server 0
+Com_drop_table  0
+Com_drop_trigger        1
+Com_drop_user   0
+Com_drop_view   0
+Com_empty_query 0
+Com_execute_sql 0
+Com_flush       14
+Com_get_diagnostics     0
+Com_grant       1
+Com_ha_close    0
+Com_ha_open     0
+Com_ha_read     0
+Com_help        0
+Com_insert      472
+Com_insert_select       0
+Com_install_plugin      1
+Com_kill        0
+Com_load        0
+Com_lock_tables 0
+Com_optimize    0
+Com_preload_keys        0
+Com_prepare_sql 0
+Com_purge       0
+Com_purge_before_date   3
+Com_release_savepoint   0
+Com_rename_table        0
+Com_rename_user 0
+Com_repair      0
+Com_replace     0
+Com_replace_select      0
+Com_reset       0
+Com_resignal    0
+Com_revoke      0
+Com_revoke_all  0
+Com_rollback    0
+Com_rollback_to_savepoint       0
+Com_savepoint   0
+Com_select      2943
+Com_set_option  2261
+Com_signal      0
+Com_show_binlog_events  0
+Com_show_binlogs        0
+Com_show_charsets       0
+Com_show_collations     0
+Com_show_create_db      0
+Com_show_create_event   0
+Com_show_create_func    0
+Com_show_create_proc    1
+Com_show_create_table   0
+Com_show_create_trigger 2
+Com_show_databases      0
+Com_show_engine_logs    0
+Com_show_engine_mutex   0
+Com_show_engine_status  0
+Com_show_events 0
+Com_show_errors 0
+Com_show_fields 0
+Com_show_function_code  0
+Com_show_function_status        0
+Com_show_grants 0
+Com_show_keys   0
+Com_show_master_status  0
+Com_show_open_tables    0
+Com_show_plugins        0
+Com_show_privileges     0
+Com_show_procedure_code 0
+Com_show_procedure_status       0
+Com_show_processlist    1
+Com_show_profile        0
+Com_show_profiles       0
+Com_show_relaylog_events        0
+Com_show_slave_hosts    0
+Com_show_slave_status   1
+Com_show_status 17
+Com_show_storage_engines        0
+Com_show_table_status   0
+Com_show_tables 0
+Com_show_triggers       0
+Com_show_variables      50
+Com_show_warnings       0
+Com_slave_start 0
+Com_slave_stop  0
+Com_stmt_close  0
+Com_stmt_execute        926
+Com_stmt_fetch  0
+Com_stmt_prepare        6
+Com_stmt_reprepare      0
+Com_stmt_reset  0
+Com_stmt_send_long_data 0
+Com_truncate    0
+Com_uninstall_plugin    0
+Com_unlock_tables       0
+Com_update      2
+Com_update_multi        0
+Com_xa_commit   0
+Com_xa_end      0
+Com_xa_prepare  0
+Com_xa_recover  0
+Com_xa_rollback 0
+Com_xa_start    0
+Com_awslambda   0
+Com_alter_system        0
+Com_unit_test   16
+Com_show_volume_status  0
+Compression     OFF
+Connection_errors_accept        0
+Connection_errors_internal      0
+Connection_errors_max_connections       0
+Connection_errors_peer_address  0
+Connection_errors_select        0
+Connection_errors_tcpwrap       0
+Connections     19
+Created_tmp_disk_tables 21
+Created_tmp_files       5
+Created_tmp_tables      850
+Delayed_errors  0
+Delayed_insert_threads  0
+Delayed_writes  0
+External_threads_connected      1
+Flush_commands  1
+Handler_commit  560
+Handler_delete  0
+Handler_discover        0
+Handler_external_lock   3158
+Handler_mrr_init        0
+Handler_prepare 0
+Handler_read_first      61
+Handler_read_key        565
+Handler_read_last       0
+Handler_read_next       27
+Handler_read_prev       0
+Handler_read_rnd        1293
+Handler_read_rnd_next   65881
+Handler_rollback        0
+Handler_savepoint       0
+Handler_savepoint_rollback      0
+Handler_update  477
+Handler_write   25303
+Innodb_buffer_pool_dump_status  not started
+Innodb_buffer_pool_load_status  not started
+Innodb_buffer_pool_pages_data   236
+Innodb_buffer_pool_bytes_data   3866624
+Innodb_buffer_pool_pages_dirty  0
+Innodb_buffer_pool_bytes_dirty  0
+Innodb_buffer_pool_pages_flushed        0
+Innodb_buffer_pool_pages_free   1276136
+Innodb_buffer_pool_pages_misc   0
+Innodb_buffer_pool_pages_total  1276372
+Innodb_buffer_pool_read_ahead_rnd       0
+Innodb_buffer_pool_read_ahead   0
+Innodb_buffer_pool_read_ahead_evicted   0
+Innodb_logical_read_ahead_page_count    0
+Innodb_buffer_pool_read_requests        219570
+Innodb_buffer_pool_reads        7
+Innodb_buffer_pool_wait_free    0
+Innodb_buffer_pool_write_requests       10186
+Innodb_data_fsyncs      0
+Innodb_data_pending_fsyncs      0
+Innodb_data_pending_reads       0
+Innodb_data_pending_writes      0
+Innodb_data_read        114688
+Innodb_data_reads       0
+Innodb_data_writes      0
+Innodb_data_written     0
+Innodb_dblwr_pages_written      0
+Innodb_dblwr_writes     0
+Innodb_have_atomic_builtins     ON
+Innodb_log_waits        0
+Innodb_log_write_requests       0
+Innodb_log_writes       1
+Innodb_os_log_fsyncs    0
+Innodb_os_log_pending_fsyncs    0
+Innodb_os_log_pending_writes    0
+Innodb_os_log_written   512
+Innodb_page_size        16384
+Innodb_pages_created    12
+Innodb_pages_read       7
+Innodb_pages_written    0
+Innodb_row_lock_current_waits   0
+Innodb_row_lock_time    0
+Innodb_row_lock_time_avg        0
+Innodb_row_lock_time_max        0
+Innodb_row_lock_waits   0
+Innodb_rows_deleted     4
+Innodb_rows_inserted    8
+Innodb_rows_read        549
+Innodb_rows_updated     2025
+Innodb_num_open_files   1
+Innodb_truncated_status_writes  0
+Innodb_available_undo_logs      128
+Key_blocks_not_flushed  0
+Key_blocks_unused       13384
+Key_blocks_used 12
+Key_read_requests       12
+Key_reads       12
+Key_write_requests      0
+Key_writes      0
+Last_query_cost 0.000000
+Last_query_partial_plans        0
+Max_used_connections    6
+Not_flushed_delayed_rows        0
+Open_files      0
+Open_streams    0
+Open_table_definitions  78
+Open_tables     95
+Opened_files    97
+Opened_table_definitions        80
+Opened_tables   106
+Performance_schema_accounts_lost        0
+Performance_schema_cond_classes_lost    0
+Performance_schema_cond_instances_lost  0
+Performance_schema_digest_lost  0
+Performance_schema_file_classes_lost    0
+Performance_schema_file_handles_lost    0
+Performance_schema_file_instances_lost  0
+Performance_schema_hosts_lost   0
+Performance_schema_locker_lost  0
+Performance_schema_mutex_classes_lost   0
+Performance_schema_mutex_instances_lost 0
+Performance_schema_rwlock_classes_lost  0
+Performance_schema_rwlock_instances_lost        0
+Performance_schema_session_connect_attrs_lost   0
+Performance_schema_socket_classes_lost  0
+Performance_schema_socket_instances_lost        0
+Performance_schema_stage_classes_lost   0
+Performance_schema_statement_classes_lost       0
+Performance_schema_table_handles_lost   0
+Performance_schema_table_instances_lost 0
+Performance_schema_thread_classes_lost  0
+Performance_schema_thread_instances_lost        0
+Performance_schema_users_lost   0
+Prepared_stmt_count     6
+Qcache_free_blocks      1
+Qcache_free_memory      1161980664
+Qcache_hits     0
+Qcache_inserts  0
+Qcache_lowmem_prunes    0
+Qcache_not_cached       2943
+Qcache_queries_in_cache 0
+Qcache_total_blocks     1
+Queries 8617
+Questions       6263
+Rsa_public_key  
+Select_full_join        0
+Select_full_range_join  0
+Select_range    17
+Select_range_check      0
+Select_scan     1833
+Slave_heartbeat_period  0.000
+Slave_last_heartbeat
+Slave_open_temp_tables  0
+Slave_received_heartbeats       0
+Slave_retried_transactions      0
+Slave_running   OFF
+Slow_launch_threads     0
+Slow_queries    0
+Sort_merge_passes       0
+Sort_range      0
+Sort_rows       1293
+Sort_scan       15
+Ssl_accept_renegotiates 0
+Ssl_accepts     3
+Ssl_callback_cache_hits 0
+Ssl_cipher      DHE-RSA-AES128-SHA
+Ssl_cipher_list AES256-SHA:AES128-SHA:DES-CBC3-SHA:ADH-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:EDH-DSS-DES-CBC3-SHA:ADH-AES256-SHA:DHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:ADH-AES128-SHA:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DH-DSS-AES256-GCM-SHA384:DHE-DSS-AES256-GCM-SHA384:DH-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA256:DH-RSA-AES256-SHA256:DH-DSS-AES256-SHA256:DH-RSA-AES256-SHA:DH-DSS-AES256-SHA:DHE-RSA-CAMELLIA256-SHA:DHE-DSS-CAMELLIA256-SHA:DH-RSA-CAMELLIA256-SHA:DH-DSS-CAMELLIA256-SHA:AECDH-AES256-SHA:ADH-AES256-GCM-SHA384:ADH-AES256-SHA256:ADH-CAMELLIA256-SHA:ECDH-RSA-AES256-GCM-SHA384:ECDH-ECDSA-AES256-GCM-SHA384:ECDH-RSA-AES256-SHA384:ECDH-ECDSA-AES256-SHA384:ECDH-RSA-AES256-SHA:ECDH-ECDSA-AES256-SHA:AES256-GCM-SHA384:AES256-SHA256:CAMELLIA256-SHA:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:
+Ssl_client_connects     0
+Ssl_connect_renegotiates        0
+Ssl_ctx_verify_depth    18446744073709551615
+Ssl_ctx_verify_mode     5
+Ssl_default_timeout     7200
+Ssl_finished_accepts    3
+Ssl_finished_connects   0
+Ssl_server_not_after    Aug 22 17:08:50 2024 GMT
+Ssl_server_not_before   May  5 11:05:43 2020 GMT
+Ssl_session_cache_hits  0
+Ssl_session_cache_misses        0
+Ssl_session_cache_mode  SERVER
+Ssl_session_cache_overflows     0
+Ssl_session_cache_size  128
+Ssl_session_cache_timeouts      0
+Ssl_sessions_reused     0
+Ssl_used_session_cache_entries  0
+Ssl_verify_depth        18446744073709551615
+Ssl_verify_mode 5
+Ssl_version     TLSv1
+Table_locks_immediate   1579
+Table_locks_waited      0
+Table_open_cache_hits   1477
+Table_open_cache_misses 106
+Table_open_cache_overflows      0
+Tc_log_max_pages_used   0
+Tc_log_page_size        0
+Tc_log_page_waits       0
+Threads_cached  0
+Threads_connected       6
+Threads_created 13
+Threads_running 1
+Time_since_zero_connections     0
+Uptime  944
+Uptime_since_flush_status       944
+aurora_scheduler_health_check   ON
+server_audit_active     OFF
+server_audit_last_error 
+server_audit_writes_failed      0
